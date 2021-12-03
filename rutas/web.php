@@ -94,9 +94,5 @@ route::delete('/Escuelas/{id}/borrarA','AlumnoController@destroy')->name('alumno
 
 
 
-
-
-
-
 /*ruta para grados*/
 route::get('/Escuelas/listaG','GradoController@listaG')->name('grado.listaG');
