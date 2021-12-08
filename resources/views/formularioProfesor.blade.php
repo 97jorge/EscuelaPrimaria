@@ -66,6 +66,7 @@
 <button type="submit" class="btn btn-primary"> Guardar</button>
 <input type="reset" class="btn btn-danger">
 
+<a  class="btn btn-primary" href="{{ route('profesor.inicio')}}"> Volver</a>
 </form>
 
 

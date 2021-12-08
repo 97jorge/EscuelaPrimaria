@@ -49,7 +49,7 @@
       <td><a  class="btn btn-warning" href="{{route('profesor.edit', ['id' => $profesor->id])}}"> Editar </a></td>
       
       <td>
-        <form  method="post" action="{{route('profesor.borrar', ['id' => $profesor->id])}}">
+        <form  method="post" action="{{route('profesor.borrar', ['id' => $profesor->id])}}" class="form-eliminar">
         @csrf
         @method('delete')
         <input  type="submit" value="Eliminar" class="btn btn-danger">
@@ -71,4 +71,38 @@
 
 
 
+@endsection
+
+
+
+@section('js')
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+ $('.form-eliminar').submit(function (e) {
+    e.preventDefault();
+
+    Swal.fire({
+  title: 'Desea eliminar este archivo?',
+  text: "Los datos no se prodran recuperar!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Si,Eliminar!'
+}).then((result) => {
+  if (result.isConfirmed) {
+   /* Swal.fire(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+    )*/
+    this.submit();
+
+  }
+})
+ });
+
+</script>
 @endsection
