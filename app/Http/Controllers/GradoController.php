@@ -22,69 +22,116 @@ class GradoController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreGradoRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreGradoRequest $request)
-    {
-        //
-    }
+   /*funcion para ver grado individual */
+   public function mostrar($id){
+    $grados= Grado::findOrFail($id);
+     return view('gradoIndividual')->with('grado',$grados);
+}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Grado  $grado
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Grado $grado)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Grado  $grado
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Grado $grado)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateGradoRequest  $request
-     * @param  \App\Models\Grado  $grado
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateGradoRequest $request, Grado $grado)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Grado  $grado
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Grado $grado)
-    {
-        //
-    }
+   /*funcion para  formulario crear los estudiantes */
+   public function crear(){
+ 
+    return view('formularioGrado');
+}
+
+
+/*  crear y guardar  los estudiantes */
+
+public function guardarG(request $request){
+   //validar los datos a ingresar 
+   $request->validate([
+          
+          'Profesor_id'=>'required',
+          'nombreGrado'=>'required',
+          'clases'=>'required',
+          'cantidadAlumnos'=>'required',
+          
+      
+   ]);
+ 
+      $nuevoGrado = new Grado();
+
+ 
+      $nuevoGrado->Profesor_id = $request->input('Profesor_id');
+      $nuevoGrado->nombreGrado= $request->input('nombreGrado');
+      $nuevoGrado->clases= $request->input('clases');
+      $nuevoGrado->cantidadAlumnos= $request->input('cantidadAlumnos');
+     
+   
+//fuente externa
+  /* $nuevoEstudiante->fechaNacimiento=('20000512');*/
+
+ $creado=$nuevoGrado->save();
+
+ if ($creado) {
+     return redirect()->route('grado.listaG')->with('mensaje','El grado fue Agredado exitosamente.');
+ }
+else {
+   // todo retornar con un mensaje de error 
+}                                     
+}
+
+
+
+/*Actualisar */
+
+
+public function editG($id){
+    $grados= Grado::findOrFail($id);
+    return view('formularioEditarGrado')->with('grado',$grados);
+
+}
+
+public function updateG(request $request,$id){
+
+ //validar los datos a ingresar 
+ $request->validate([
+    'Profesor_id'=>'required',
+    'nombreGrado'=>'required',
+    'clases'=>'required',
+    'cantidadAlumnos'=>'required',
+    
+]);
+
+  $grados= Grado::findOrFail($id);
+
+
+  $grados->Profesor_id = $request->input('Profesor_id');
+  $grados->nombreGrado= $request->input('nombreGrado');
+  $grados->clases= $request->input('clases');
+  $grados->cantidadAlumnos= $request->input('cantidadAlumnos');
+ 
+
+ //fuente externa
+
+
+$creado=$grados->save();
+
+if ($creado) {
+    return redirect()->route('grado.listaG')->with('mensaje','El Grado fue editado exitosamente.');
+}
+else {
+  // todo retornar con un mensaje de error 
+}    
+
+  
+}
+
+
+
+public function destroy($id) {
+    Grado::destroy($id);
+  
+    //redirect
+    return redirect('/Escuelas/listaG/')->with('mensaje','El Grado fue borrado completamente ');
+  
+  }
+    
+
+
+    
 }
