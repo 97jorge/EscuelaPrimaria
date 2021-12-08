@@ -32,8 +32,8 @@
 
       
 <div class="form-group">
-  <label for="grado_id">  Grado_id</label>
-  <input type="number" class="form-control" name="grado_id" id="grado_id" placeholder="grado_id">
+  <label for="Grado_id">  Grado_id</label>
+  <input type="number" class="form-control" name="Grado_id" id="Grado_id" placeholder="grado_id">
 </div>
 
 <div class="form-group">

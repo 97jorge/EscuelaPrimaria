@@ -22,8 +22,8 @@
       <td>{{$profesor ->id}}</td>
     </tr>
    <tr>
-    <th scope="row">grado_id</th>
-      <td>{{$profesor ->grado_id}}</td>
+    <th scope="row">Grado_id</th>
+      <td>{{$profesor ->Grado_id}}</td>
     </tr>
    
     <th scope="row">nombre</th>

@@ -57,7 +57,7 @@
 <div class="form-group">
   <label for="telefono"> Telefono</label>
   <input type="number" class="form-control" name="telefono" id="telefono"
-   placeholder="########" value="{{$alumno->telefono}}">
+  value="{{$alumno->telefono}}">
 </div>
 
 <div class="form-group">

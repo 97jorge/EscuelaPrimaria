@@ -5,7 +5,7 @@
 @section('contenido')
 
 
-<h1> Detalle De Profesor {{$alumno->nombre}}</h1>
+<h1> Detalle De {{$alumno->nombre}}</h1>
 <td><a  class="btn btn-warning" href=""> Editar </a></td>
 <table class="table">
   <thead>
