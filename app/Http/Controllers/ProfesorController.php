@@ -6,6 +6,7 @@ use App\Models\Profesor;
 use App\Http\Requests\StoreProfesorRequest;
 use App\Http\Requests\UpdateProfesorRequest;
 use Illuminate\Http\Request;
+use Illuminate\support\Facades\DB;
 
 class ProfesorController extends Controller
 {
@@ -15,14 +16,25 @@ class ProfesorController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function inicio(Request $request){
 
 
-    public function inicio(){
+      $texto= trim($request->get('texto'));
+      $profesors =DB::table('profesors')
+                 ->select('profesors.*')
+                 ->where('nombre','LIKE','%'.$texto.'%')
+                 ->orwhere('ciudad','LIKE','%'.$texto.'%')
+                 ->orderBy('id', 'asc')
+                -> paginate(10);
+                return view('profesores',compact('profesors','texto'));
 
-        $profesors = Profesor::paginate(5);
-        return view('profesores')->with('profesors',$profesors);
+       // $profesors = Profesor::paginate(5);
+       // return view('profesores')->with('profesors',$profesors);
+
 
     }
+
+
 
    /*funcion para mostrar prof por id */
    public function mostrar($id){

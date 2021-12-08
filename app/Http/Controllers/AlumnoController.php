@@ -6,6 +6,7 @@ use App\Models\Alumno;
 use App\Http\Requests\StoreAlumnoRequest;
 use App\Http\Requests\UpdateAlumnoRequest;
 use Illuminate\Http\Request;
+use Illuminate\support\Facades\DB;
 
 class AlumnoController extends Controller
 {
@@ -21,12 +22,25 @@ class AlumnoController extends Controller
     }
 
 
-        public function lista(){
 
-            $alumnos = Alumno::paginate(5);
-            return view('alumnos')->with('alumnos',$alumnos);
+        public function lista(Request $request){
 
-        }
+            // $alumnos = Alumno::paginate(5);
+            // return view('alumnos')->with('alumnos',$alumnos);
+ 
+             $texto= trim($request->get('texto'));
+             $alumnos =DB::table('alumnos')
+                        ->select('alumnos.*')
+                        ->where('nombre','LIKE','%'.$texto.'%')
+                        ->orwhere('ciudad','LIKE','%'.$texto.'%')
+                        ->orderBy('id', 'asc')
+                       -> paginate(10);
+                       return view('alumnos',compact('alumnos','texto'));
+             
+ 
+         }
+
+
 
 
 

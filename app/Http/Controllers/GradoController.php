@@ -15,7 +15,7 @@ class GradoController extends Controller
      */
     public function listaG(){
 
-    $grados = Grado::paginate(5);
+    $grados = Grado::paginate(10);
     return view('grados')->with('grados',$grados);
       
       
