@@ -15,7 +15,7 @@ class GradoSeeder extends Seeder
     public function run()
     {
 
-        Grado::factory(10)->create();
+        Grado::factory(20)->create();
 
         //
     }
