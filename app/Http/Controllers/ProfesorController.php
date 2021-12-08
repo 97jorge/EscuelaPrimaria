@@ -58,7 +58,7 @@ class ProfesorController extends Controller
 public function guardar(request $request){
    //validar los datos a ingresar 
    $request->validate([
-          'grado_id'=>'required',
+          'Grado_id'=>'required',
           'nombre'=>'required',
           'edad'=>'required',
           'identidad'=>'required',
@@ -70,7 +70,7 @@ public function guardar(request $request){
 
       $nuevoProfesor = new profesor();
 
-      $nuevoProfesor->grado_id = $request->input('grado_id');
+      $nuevoProfesor->Grado_id = $request->input('Grado_id');
       $nuevoProfesor->nombre = $request->input('nombre');
       $nuevoProfesor->edad= $request->input('edad');
       $nuevoProfesor->identidad= $request->input('identidad');

@@ -66,7 +66,7 @@ class AlumnoController extends Controller
 public function guardarA(request $request){
    //validar los datos a ingresar 
    $request->validate([
-          'grado_id'=>'required',
+          'Grado_id'=>'required',
           'nombre'=>'required',
           'edad'=>'required',
           'direccion'=>'required',
@@ -78,7 +78,7 @@ public function guardarA(request $request){
 
       $nuevoAlumno = new Alumno();
 
-      $nuevoAlumno->grado_id = $request->input('grado_id');
+      $nuevoAlumno->grado_id = $request->input('Grado_id');
       $nuevoAlumno->nombre = $request->input('nombre');
       $nuevoAlumno->edad= $request->input('edad');
       $nuevoAlumno->direccion= $request->input('direccion');
