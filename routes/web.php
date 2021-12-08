@@ -96,3 +96,30 @@ route::delete('/Escuelas/{id}/borrarA','AlumnoController@destroy')->name('alumno
 
 /*ruta para grados*/
 route::get('/Escuelas/listaG','GradoController@listaG')->name('grado.listaG');
+
+
+/* ruta para ver un grado  */
+route::get('/Escuelas/listaDeGrados/{id}','GradoController@mostrar')->name('grado.mostrar')
+->where ('id', '[0-9]+') ;
+
+
+
+/* crear ruta para crear */
+route::get('/Escuelas/AgregarG','GradoController@crear')->name('grado.crear');
+
+/* crear ruta con metodo post  para guardar */
+route::post('/Escuelas/AgregarG','GradoController@guardarG')->name('grado.guardarG');
+
+
+/*rutas para actualizar*/
+route::get('/Escuelas/{id}/editG','GradoController@editG')->name('grado.editG')
+->where ('id', '[0-9]+');
+
+/*metodo put para editar */
+route::put('/Escuelas/{id}/editaG','GradoController@updateG')->name('grado.updateG')
+->where ('id', '[0-9]+');
+
+
+/*metodo delete para borrar */
+route::delete('/Escuelas/{id}/borrarG','GradoController@destroy')->name('grado.borrar')
+->where ('id', '[0-9]+');
